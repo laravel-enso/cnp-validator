@@ -6,7 +6,6 @@ use Jenssegers\Date\Date;
 
 class CnpValidator
 {
-
     private $cnp;
     private $hashTale;
     private $hashResult;
@@ -14,7 +13,7 @@ class CnpValidator
 
     public function __construct($cnp)
     {
-        $this->cnp      = $cnp;
+        $this->cnp = $cnp;
         $this->hashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
         $this->hashresult = 0;
         $this->validate();
@@ -22,63 +21,67 @@ class CnpValidator
 
     public static function validatorCnp($attribute, $cnp)
     {
-        $cnpValidator = new CnpValidator($cnp);
+        $cnpValidator = new self($cnp);
 
         return $cnpValidator->isValid();
     }
 
     public function isValid()
     {
-    	return $this->isValid;
+        return $this->isValid;
     }
 
     private function validate()
     {
-       	if ($this->failsLengthTest()) return false;
-       	if ($this->failsNumericTest()) return false;
+        if ($this->failsLengthTest()) {
+            return false;
+        }
+        if ($this->failsNumericTest()) {
+            return false;
+        }
 
-       	$this->getHashResult();
+        $this->getHashResult();
 
-        if ($this->failsYearTest()) return false;
+        if ($this->failsYearTest()) {
+            return false;
+        }
 
         $this->isValid = intval($this->cnp[12]) === $this->hashResult;
     }
 
     private function failsLengthTest()
     {
-    	return strlen($this->cnp) !== 13;
+        return strlen($this->cnp) !== 13;
     }
 
     private function failsNumericTest()
     {
-    	return $this->cnp != intval($this->cnp);
+        return $this->cnp != intval($this->cnp);
     }
 
     private function getHashResult()
     {
-    	for ($i = 0; $i < 12; $i++) {
-
-    		$this->hashResult += intval($this->cnp[$i]) * $this->hashTable[$i];
+        for ($i = 0; $i < 12; $i++) {
+            $this->hashResult += intval($this->cnp[$i]) * $this->hashTable[$i];
         }
 
         $this->hashResult = $this->hashResult % 11;
 
         if ($this->hashResult === 10) {
-
             $this->hashResult = 1;
         }
     }
 
     private function failsYearTest()
     {
-    	$year = $this->getYear();
+        $year = $this->getYear();
 
         return $year < 1800 || $year > 2099;
     }
 
     private function getYear()
     {
-    	$year = ($this->cnp[1] * 10) + $this->cnp[2];
+        $year = ($this->cnp[1] * 10) + $this->cnp[2];
 
         switch ($this->cnp[0]) {
 
