@@ -7,7 +7,7 @@ use Jenssegers\Date\Date;
 class CnpValidator
 {
     private $cnp;
-    private $hashTale;
+    private $hashTable;
     private $hashResult;
     private $isValid;
 
@@ -19,7 +19,7 @@ class CnpValidator
         $this->validate();
     }
 
-    public static function validatorCnp($attribute, $cnp)
+    public static function validatorCnp($cnp)
     {
         $cnpValidator = new self($cnp);
 

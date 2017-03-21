@@ -4,7 +4,7 @@ namespace LaravelEnso\CnpValidator;
 
 class Validations
 {
-    public static function validatorCnp($attributeName, $cnp)
+    public static function validatorCnp($attribute, $cnp)
     {
         $cnpValidator = new CnpValidator($cnp);
 
