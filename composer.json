@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelEnso\\CnpValidtor\\": "src/"
+            "LaravelEnso\\CnpValidator\\": "src/"
         }
     }
 }
