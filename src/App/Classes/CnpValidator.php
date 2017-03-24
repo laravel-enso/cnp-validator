@@ -77,19 +77,21 @@ class CnpValidator
     {
         $year = $this->getYear();
 
-        return $year < 1800 || $year > 2099;
+        return $year < 1900 || $year > 2050;
     }
 
     private function getYear()
     {
         $year = ($this->cnp[1] * 10) + $this->cnp[2];
 
-        switch ($this->cnp[0]) {
-            case 1: case 2: $year += 1900; break;
-            case 3: case 4: $year += 1800; break;
-            case 5: case 6: $year += 2000; break;
-            case 7: case 8: case 9: $year = $this->compute2K($year);
-            break;
+        if (in_array($this->cnp[0], [1, 2])) {
+            $year += 1900;
+        } else if (in_array($this->cnp[0], [3, 4])) {
+            $year += 1800;
+        } else if (in_array($this->cnp[0], [5, 6])) {
+            $year += 2000;
+        } else if (in_array($this->cnp[0], [7, 8, 9])) {
+            $year = $this->compute2K($year);
         }
 
         return $year;
