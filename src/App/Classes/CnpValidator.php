@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\CnpValidator;
+namespace LaravelEnso\CnpValidator\App\Classes;
 
-use Jenssegers\Date\Date;
+use Carbon\Carbon;
 
 class CnpValidator
 {
@@ -16,6 +16,7 @@ class CnpValidator
         $this->cnp = $cnp;
         $this->hashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
         $this->hashresult = 0;
+        $this->isValid = false;
         $this->validate();
     }
 
@@ -34,16 +35,16 @@ class CnpValidator
     private function validate()
     {
         if ($this->failsLengthTest()) {
-            return false;
+            return;
         }
         if ($this->failsNumericTest()) {
-            return false;
+            return;
         }
 
         $this->getHashResult();
 
         if ($this->failsYearTest()) {
-            return false;
+            return;
         }
 
         $this->isValid = intval($this->cnp[12]) === $this->hashResult;
@@ -84,27 +85,20 @@ class CnpValidator
         $year = ($this->cnp[1] * 10) + $this->cnp[2];
 
         switch ($this->cnp[0]) {
-
-            case 1:
-            case 2: $year += 1900; break;
-
+            case 1: case 2: $year += 1900; break;
             case 3: case 4: $year += 1800; break;
-
-            case 5:
-            case 6: $year += 2000; break;
-
-            case 7:
-            case 8:
-            case 9: {
-                $year += 2000;
-
-                if ($year > ((Date::now()->year) - 14)) {
-                    $year -= 100;
-                }
-            }
+            case 5: case 6: $year += 2000; break;
+            case 7: case 8: case 9: $year = $this->compute2K($year);
             break;
         }
 
         return $year;
+    }
+
+    private function compute2K($year)
+    {
+        $year += 2000;
+
+        return $year > ((Carbon::now()->year) - 14) ? $year -= 100 : $year;
     }
 }
