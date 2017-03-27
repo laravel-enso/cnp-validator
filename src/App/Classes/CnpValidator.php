@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\CnpValidator\App\Classes;
+namespace LaravelEnso\CnpValidator\app\Classes;
 
 use Carbon\Carbon;
 

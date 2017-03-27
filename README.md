@@ -13,7 +13,7 @@ Romanian CNP validator for Laravel
 ```
 	public function boot()
     {
-        Validator::extend('cnp', 'LaravelEnso\CnpValidator\App\Classes\Validations@validatorCnp');
+        Validator::extend('cnp', 'LaravelEnso\CnpValidator\app\Classes\Validations@validatorCnp');
     }
 ```
 
