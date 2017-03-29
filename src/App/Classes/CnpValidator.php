@@ -16,7 +16,7 @@ class CnpValidator
         $this->cnp = $cnp;
         $this->hashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
         $this->hashresult = 0;
-        $this->isValid = false;
+        $this->isValid = $this->cnp ? false : true;
         $this->validate();
     }
 
