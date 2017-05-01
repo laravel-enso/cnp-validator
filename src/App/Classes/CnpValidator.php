@@ -85,16 +85,18 @@ class CnpValidator
         $year = ($this->cnp[1] * 10) + $this->cnp[2];
 
         if (in_array($this->cnp[0], [1, 2])) {
-            $year += 1900;
-        } elseif (in_array($this->cnp[0], [3, 4])) {
-            $year += 1800;
-        } elseif (in_array($this->cnp[0], [5, 6])) {
-            $year += 2000;
-        } elseif (in_array($this->cnp[0], [7, 8, 9])) {
-            $year = $this->compute2K($year);
+            return $year + 1900;
         }
 
-        return $year;
+        if (in_array($this->cnp[0], [3, 4])) {
+            return $year + 1800;
+        }
+
+        if (in_array($this->cnp[0], [5, 6])) {
+            return $year + 2000;
+        }
+
+        return $this->compute2K($year);
     }
 
     private function compute2K($year)

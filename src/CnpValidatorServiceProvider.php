@@ -2,7 +2,6 @@
 
 namespace LaravelEnso\CnpValidator;
 
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class CnpValidatorServiceProvider extends ServiceProvider
@@ -14,7 +13,7 @@ class CnpValidatorServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::extend('nin', 'LaravelEnso\CnpValidator\app\Classes\Validations@validatorCnp');
+        \Validator::extend('cnp', 'LaravelEnso\CnpValidator\app\Classes\Validations@validatorCnp');
     }
 
     /**
