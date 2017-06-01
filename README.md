@@ -6,7 +6,7 @@
 
 Romanian CNP validator for Laravel
 
-### Instalation
+### Instalation Steps
 
 1. Add `'LaravelEnso\CnpValidator\CnpValidatorServiceProvider::class'` to your providers list in config/app.php.
 
@@ -16,7 +16,13 @@ Romanian CNP validator for Laravel
 public function rules()
 {
     return [
-        'cnp' => 'required|unique:users|cnp',
+        'cnp' => [
+                'max:13',
+                'cnp',
+                'nullable',
+                $this->_method == 'PATCH' ? Rule::unique('users', 'nin')->ignore(route('user')->id)
+                	: Rule::unique('users', 'nin')
+            ],
     ];
 }
 ```
