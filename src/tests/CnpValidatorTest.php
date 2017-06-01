@@ -9,11 +9,11 @@ class CnpValidatorTest extends TestCase
     {
         // Arrange
         $goodCnp = '1800119081824';
-        $badCnp  = '1800191081823';
+        $badCnp = '1800191081823';
 
         // Act
         $goodResult = \Validator::make(['cnp' => $goodCnp], ['cnp' => 'cnp']);
-        $badResult  = \Validator::make(['cnp' => $badCnp], ['cnp' => 'cnp']);
+        $badResult = \Validator::make(['cnp' => $badCnp], ['cnp' => 'cnp']);
 
         // Assert
         $this->assertTrue(!$goodResult->fails());
