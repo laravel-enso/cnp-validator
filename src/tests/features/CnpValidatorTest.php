@@ -13,7 +13,7 @@ class CnpValidatorTest extends TestCase
         $goodResult = \Validator::make(['cnp' => $goodCnp], ['cnp' => 'cnp']);
         $badResult = \Validator::make(['cnp' => $badCnp], ['cnp' => 'cnp']);
 
-        $this->assertTrue(!$goodResult->fails());
+        $this->assertFalse($goodResult->fails());
         $this->assertTrue($badResult->fails());
     }
 }
