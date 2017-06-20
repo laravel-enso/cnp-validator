@@ -1,7 +1,7 @@
 {
     "name": "laravel-enso/cnpvalidator",
     "description": "Romanian CNP validator for Laravel",
-    "type": "library",
+    "type": "validator",
     "license": "MIT",
     "authors": [
         {

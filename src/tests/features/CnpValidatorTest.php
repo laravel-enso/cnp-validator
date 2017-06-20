@@ -5,7 +5,7 @@ use Tests\TestCase;
 class CnpValidatorTest extends TestCase
 {
     /** @test */
-    public function validate_cnp()
+    public function validate()
     {
         $goodCnp = '1800119081824';
         $badCnp = '1800191081823';
