@@ -1,4 +1,5 @@
 # CNP Validator
+[![License](https://poser.pugx.org/laravel-enso/actionlogger/license)](https://https://packagist.org/packages/laravel-enso/actionlogger)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1bd345b5a40144d48647bb79b0b8f91d)](https://www.codacy.com/app/laravel-enso/CnpValidator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/CnpValidator&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://styleci.io/repos/85675542/shield?branch=master)](https://styleci.io/repos/85675542)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/cnpvalidator/downloads)](https://packagist.org/packages/laravel-enso/cnpvalidator)
@@ -12,25 +13,27 @@ Romanian CNP validator for Laravel
 
 2. Use the CNP validator in your ValidateModelRequest validation class
 
-```
-public function rules()
-{
-    return [
-        'cnp' => [
-                'max:13',
-                'cnp',
-                'nullable',
-                $this->_method == 'PATCH' ? Rule::unique('users', 'nin')->ignore(route('user')->id)
-                	: Rule::unique('users', 'nin')
-            ],
-    ];
-}
-```
+    ```
+    public function rules()
+    {
+        return [
+            'cnp' => [
+                    'max:13',
+                    'cnp',
+                    'nullable',
+                    $this->_method == 'PATCH' ? Rule::unique('users', 'nin')->ignore(route('user')->id)
+                        : Rule::unique('users', 'nin')
+                ],
+        ];
+    }
+    ```
 
 ### Note
 
-Don't forget to add the translation for the validator error message in resources/lang/**/validation.php under the `cnp` key.
+Don't forget to add the translation for the validator error message in `resources/lang/**/validation.php` under the `cnp` key.
+
+The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 
 ### Contributions
 
-...are welcome
+are welcome
