@@ -24,7 +24,8 @@ Romanian CNP validator for Laravel
                     'max:13',
                     'cnp',
                     'nullable',
-                    $this->_method == 'PATCH' ? Rule::unique('users', 'nin')->ignore(route('user')->id)
+                    $this->_method == 'PATCH'
+                        ? Rule::unique('users', 'nin')->ignore(route('user')->id)
                         : Rule::unique('users', 'nin')
                 ],
         ];
