@@ -1,3 +1,4 @@
+<!--h--> 
 # CNP Validator
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/1bd345b5a40144d48647bb79b0b8f91d)](https://www.codacy.com/app/laravel-enso/CnpValidator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/CnpValidator&amp;utm_campaign=Badge_Grade)
@@ -5,6 +6,7 @@
 [![License](https://poser.pugx.org/laravel-enso/actionlogger/license)](https://https://packagist.org/packages/laravel-enso/actionlogger)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/cnpvalidator/downloads)](https://packagist.org/packages/laravel-enso/cnpvalidator)
 [![Latest Stable Version](https://poser.pugx.org/laravel-enso/cnpvalidator/version)](https://packagist.org/packages/laravel-enso/cnpvalidator)
+<!--/h-->
 
 Romanian CNP validator for Laravel
 
@@ -29,12 +31,18 @@ Romanian CNP validator for Laravel
     }
     ```
 
-### Note
+### Notes
 
 Don't forget to add the translation for the validator error message in `resources/lang/**/validation.php` under the `cnp` key.
 
 The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
 
+<!--h-->
 ### Contributions
 
-are welcome
+are welcome. Pull requests are great, but issues are good too.
+
+### License
+
+This package is released under the MIT license.
+<!--/h-->
