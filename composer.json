@@ -1,12 +1,21 @@
 {
     "name": "laravel-enso/cnpvalidator",
     "description": "Romanian CNP validator for Laravel",
-    "type": "validator",
+    "keywords": [
+        "laravel-enso",
+        "cnpvalidator",
+        "cnp-validator",
+        "validator"
+    ],
+    "type": "library",
+    "homepage": "https://github.com/laravel-enso/CnpValidator",
     "license": "MIT",
     "authors": [
         {
-            "name": "mishu",
-            "email": "mishu@xtelecom.ro"
+            "name": "Adrian Ocneanu",
+            "email": "aocneanu@gmail.com",
+            "homepage": "https://laravel-enso.com",
+            "role": "Developer"
         }
     ],
     "require": {
@@ -16,6 +25,14 @@
     "autoload": {
         "psr-4": {
             "LaravelEnso\\CnpValidator\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\CnpValidator\\CnpValidatorServiceProvider"
+            ],
+            "aliases": {}
         }
     }
 }
