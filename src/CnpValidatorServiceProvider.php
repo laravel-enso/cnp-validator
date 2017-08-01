@@ -9,8 +9,8 @@ class CnpValidatorServiceProvider extends ServiceProvider
     public function boot()
     {
         \Validator::extend(
-        	'cnp',
-        	'LaravelEnso\CnpValidator\app\Classes\Validator@cnp'
+            'cnp',
+            'LaravelEnso\CnpValidator\app\Classes\Validator@cnp'
         );
     }
 
