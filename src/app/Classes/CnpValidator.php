@@ -34,10 +34,7 @@ class CnpValidator
 
     private function validate()
     {
-        if ($this->failsLengthTest()) {
-            return;
-        }
-        if ($this->failsNumericTest()) {
+        if ($this->failsLengthTest() || $this->failsNumericTest()) {
             return;
         }
 
@@ -92,11 +89,9 @@ class CnpValidator
             return $year + 1800;
         }
 
-        if (in_array($this->cnp[0], [5, 6])) {
-            return $year + 2000;
-        }
-
-        return $this->compute2K($year);
+        return in_array($this->cnp[0], [5, 6])
+            ? $year + 2000
+            : $this->compute2K($year);
     }
 
     private function compute2K($year)
