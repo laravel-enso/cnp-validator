@@ -6,6 +6,7 @@ class Validator
 {
     public static function cnp($attribute, $cnp)
     {
-        return (new CnpValidator($cnp))->isValid();
+        return (new CnpValidator($cnp))
+            ->isValid();
     }
 }

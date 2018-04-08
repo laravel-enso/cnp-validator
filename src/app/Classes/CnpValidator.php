@@ -6,29 +6,27 @@ use Carbon\Carbon;
 
 class CnpValidator
 {
+    private const HasTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
+
     private $cnp;
-    private $hashTable;
-    private $hashResult;
-    private $isValid;
+    private $hashResult = 0;
+    private $isValid = false;
 
     public function __construct($cnp)
     {
         $this->cnp = $cnp;
-        $this->hashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
-        $this->hashresult = 0;
-        $this->isValid = false;
-        $this->validate();
     }
 
     public static function validatorCnp($cnp)
     {
-        $cnpValidator = new self($cnp);
-
-        return $cnpValidator->isValid();
+        return (new self($cnp))
+            ->isValid();
     }
 
     public function isValid()
     {
+        $this->validate();
+
         return $this->isValid;
     }
 
@@ -60,7 +58,7 @@ class CnpValidator
     private function getHashResult()
     {
         for ($i = 0; $i < 12; $i++) {
-            $this->hashResult += intval($this->cnp[$i]) * $this->hashTable[$i];
+            $this->hashResult += intval($this->cnp[$i]) * self::HasTable[$i];
         }
 
         $this->hashResult = $this->hashResult % 11;
