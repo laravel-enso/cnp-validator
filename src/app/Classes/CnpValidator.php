@@ -17,13 +17,7 @@ class CnpValidator
         $this->cnp = $cnp;
     }
 
-    public static function validatorCnp($cnp)
-    {
-        return (new self($cnp))
-            ->isValid();
-    }
-
-    public function isValid()
+    public function passes()
     {
         $this->validate();
 

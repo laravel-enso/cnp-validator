@@ -30,7 +30,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\CnpValidator\\CnpValidatorServiceProvider"
+                "LaravelEnso\\CnpValidator\\AppServiceProvider"
             ],
             "aliases": {}
         }

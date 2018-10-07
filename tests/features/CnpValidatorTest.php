@@ -5,21 +5,27 @@ use Tests\TestCase;
 class CnpValidatorTest extends TestCase
 {
     /** @test */
-    public function good_cnp_validates()
+    public function validates_on_good_cnp()
     {
         $goodCnp = '1800119081824';
 
-        $goodResult = \Validator::make(['cnp' => $goodCnp], ['cnp' => 'cnp']);
+        $goodResult = \Validator::make(
+            ['cnp' => $goodCnp],
+            ['cnp' => 'cnp']
+        );
 
         $this->assertFalse($goodResult->fails());
     }
 
     /** @test */
-    public function bad_cnp_fails_validation()
+    public function fails_validation_on_bad_cnp()
     {
         $badCnp = '1800191081823';
 
-        $badResult = \Validator::make(['cnp' => $badCnp], ['cnp' => 'cnp']);
+        $badResult = \Validator::make(
+            ['cnp' => $badCnp],
+            ['cnp' => 'cnp']
+        );
 
         $this->assertTrue($badResult->fails());
     }
