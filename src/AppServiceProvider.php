@@ -5,7 +5,7 @@ namespace LaravelEnso\CnpValidator;
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\CnpValidator\app\Classes\CnpValidator;
 
-class CnpValidatorServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
