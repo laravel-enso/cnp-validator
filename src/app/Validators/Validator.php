@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\CnpValidator\app\Classes;
+namespace LaravelEnso\CnpValidator\app\Validators;
 
 use Carbon\Carbon;
 
-class CnpValidator
+class Validator
 {
     private const HasTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
 
@@ -17,13 +17,13 @@ class CnpValidator
         $this->cnp = $cnp;
     }
 
-    public static function validatorCnp($cnp)
+    public static function cnp($cnp)
     {
         return (new self($cnp))
-            ->isValid();
+            ->passes();
     }
 
-    public function isValid()
+    public function passes()
     {
         $this->validate();
 

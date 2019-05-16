@@ -1,11 +1,11 @@
 <!--h-->
 # CNP Validator
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1bd345b5a40144d48647bb79b0b8f91d)](https://www.codacy.com/app/laravel-enso/CnpValidator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/CnpValidator&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1bd345b5a40144d48647bb79b0b8f91d)](https://www.codacy.com/app/laravel-enso/cnp-validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/cnp-validator&amp;utm_campaign=Badge_Grade)
 [![StyleCI](https://styleci.io/repos/85675542/shield?branch=master)](https://styleci.io/repos/85675542)
 [![License](https://poser.pugx.org/laravel-enso/actionlogger/license)](https://packagist.org/packages/laravel-enso/actionlogger)
-[![Total Downloads](https://poser.pugx.org/laravel-enso/cnpvalidator/downloads)](https://packagist.org/packages/laravel-enso/cnpvalidator)
-[![Latest Stable Version](https://poser.pugx.org/laravel-enso/cnpvalidator/version)](https://packagist.org/packages/laravel-enso/cnpvalidator)
+[![Total Downloads](https://poser.pugx.org/laravel-enso/cnp-validator/downloads)](https://packagist.org/packages/laravel-enso/cnp-validator)
+[![Latest Stable Version](https://poser.pugx.org/laravel-enso/cnp-validator/version)](https://packagist.org/packages/laravel-enso/cnp-validator)
 <!--/h-->
 
 Romanian CNP validator for Laravel
