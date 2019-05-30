@@ -1,6 +1,7 @@
 <?php
 
 use Tests\TestCase;
+use Illuminate\Support\Facades\Validator;
 
 class CnpValidatorTest extends TestCase
 {
@@ -9,7 +10,7 @@ class CnpValidatorTest extends TestCase
     {
         $goodCnp = '1800119081824';
 
-        $goodResult = \Validator::make(
+        $goodResult = Validator::make(
             ['cnp' => $goodCnp],
             ['cnp' => 'cnp']
         );
@@ -22,7 +23,7 @@ class CnpValidatorTest extends TestCase
     {
         $badCnp = '1800191081823';
 
-        $badResult = \Validator::make(
+        $badResult = Validator::make(
             ['cnp' => $badCnp],
             ['cnp' => 'cnp']
         );

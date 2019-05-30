@@ -6,18 +6,20 @@ use Carbon\Carbon;
 
 class Validator
 {
-    private const HasTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
+    private const HashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
 
     private $cnp;
-    private $hashResult = 0;
-    private $isValid = false;
+    private $hashResult;
+    private $isValid;
 
-    public function __construct($cnp)
+    public function __construct($cnp = null)
     {
         $this->cnp = $cnp;
+        $this->hashResult = 0;
+        $this->isValid = false;
     }
 
-    public static function cnp($cnp)
+    public static function cnp($attribute, $cnp)
     {
         return (new self($cnp))
             ->passes();
@@ -52,13 +54,13 @@ class Validator
 
     private function failsNumericTest()
     {
-        return $this->cnp != intval($this->cnp);
+        return $this->cnp !== intval($this->cnp);
     }
 
     private function getHashResult()
     {
         for ($i = 0; $i < 12; $i++) {
-            $this->hashResult += intval($this->cnp[$i]) * self::HasTable[$i];
+            $this->hashResult += intval($this->cnp[$i]) * self::HashTable[$i];
         }
 
         $this->hashResult = $this->hashResult % 11;
