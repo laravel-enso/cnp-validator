@@ -19,7 +19,6 @@
         }
     ],
     "require": {
-        "php": ">=7.1.0",
         "laravel/framework": "^6.0"
     },
     "autoload": {
