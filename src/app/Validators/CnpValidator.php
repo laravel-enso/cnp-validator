@@ -57,7 +57,7 @@ class CnpValidator
             $this->hashResult += intval($this->cnp[$i]) * self::HashTable[$i];
         }
 
-        $this->hashResult = $this->hashResult % 11;
+        $this->hashResult %= 11;
 
         if ($this->hashResult === 10) {
             $this->hashResult = 1;
