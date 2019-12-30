@@ -1,33 +1,33 @@
 <?php
 
-use Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
+use Tests\TestCase;
 
 class CnpValidatorTest extends TestCase
 {
     /** @test */
-    public function validates_on_good_cnp()
+    public function passes_on_good_cnp()
     {
-        $goodCnp = '1800119081824';
+        $cnp = '1800119081824';
 
-        $goodResult = Validator::make(
-            ['cnp' => $goodCnp],
+        $validator = Validator::make(
+            ['cnp' => $cnp],
             ['cnp' => 'cnp']
         );
 
-        $this->assertFalse($goodResult->fails());
+        $this->assertFalse($validator->fails());
     }
 
     /** @test */
-    public function fails_validation_on_bad_cnp()
+    public function fails_on_bad_cnp()
     {
-        $badCnp = '1800191081823';
+        $cnp = '1800191081823';
 
-        $badResult = Validator::make(
-            ['cnp' => $badCnp],
+        $validator = Validator::make(
+            ['cnp' => $cnp],
             ['cnp' => 'cnp']
         );
 
-        $this->assertTrue($badResult->fails());
+        $this->assertTrue($validator->fails());
     }
 }

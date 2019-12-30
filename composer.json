@@ -2,6 +2,7 @@
     "name": "laravel-enso/cnp-validator",
     "description": "Romanian CNP validator for Laravel",
     "keywords": [
+        "laravel",
         "laravel-enso",
         "cnp",
         "cnp-validator",
@@ -19,7 +20,8 @@
         }
     ],
     "require": {
-        "laravel/framework": "^6.0"
+        "laravel/framework": "^6.0",
+        "php": ">=7.4.0"
     },
     "autoload": {
         "psr-4": {

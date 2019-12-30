@@ -1,97 +1,79 @@
 <?php
 
-namespace LaravelEnso\CnpValidator\app\Validators;
-
-use Carbon\Carbon;
+namespace LaravelEnso\CnpValidator\App\Validators;
 
 class CnpValidator
 {
     private const HashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
 
     private $cnp;
-    private $hashResult;
-    private $isValid;
 
     public function __construct($cnp = null)
     {
         $this->cnp = $cnp;
-        $this->hashResult = 0;
-        $this->isValid = false;
     }
 
     public function passes()
     {
-        $this->validate();
-
-        return $this->isValid;
+        return $this->isNumeric() && $this->validLength()
+            && $this->validDate() && $this->validHash();
     }
 
-    private function validate()
+    private function isNumeric()
     {
-        if ($this->failsLengthTest() || $this->failsNumericTest()) {
-            return;
-        }
-
-        $this->getHashResult();
-
-        if ($this->failsYearTest()) {
-            return;
-        }
-
-        $this->isValid = intval($this->cnp[12]) === $this->hashResult;
+        return $this->cnp === (string) (int) $this->cnp;
     }
 
-    private function failsLengthTest()
+    private function validLength()
     {
-        return strlen($this->cnp) !== 13;
+        return strlen($this->cnp) === 13;
     }
 
-    private function failsNumericTest()
+    private function validDate()
     {
-        return $this->cnp !== (string) (int) $this->cnp;
+        $month = (int) "{$this->cnp[3]}{$this->cnp[4]}";
+        $day = (int) "{$this->cnp[5]}{$this->cnp[6]}";
+        $year = $this->year();
+
+        return 1900 <= $year && $year <= 2050 && checkdate($month, $day, $year);
     }
 
-    private function getHashResult()
+    private function validHash()
     {
-        for ($i = 0; $i < 12; $i++) {
-            $this->hashResult += intval($this->cnp[$i]) * self::HashTable[$i];
-        }
-
-        $this->hashResult %= 11;
-
-        if ($this->hashResult === 10) {
-            $this->hashResult = 1;
-        }
+        return (int) $this->cnp[12] === $this->hash();
     }
 
-    private function failsYearTest()
+    private function year()
     {
-        $year = $this->getYear();
+        $year = ((int) $this->cnp[1] * 10) + ((int) $this->cnp[2]);
 
-        return $year < 1900 || $year > 2050;
-    }
-
-    private function getYear()
-    {
-        $year = ($this->cnp[1] * 10) + $this->cnp[2];
-
-        if (in_array($this->cnp[0], [1, 2])) {
+        if (in_array((int) $this->cnp[0], [1, 2])) {
             return $year + 1900;
         }
 
-        if (in_array($this->cnp[0], [3, 4])) {
+        if (in_array((int) $this->cnp[0], [3, 4])) {
             return $year + 1800;
         }
 
-        return in_array($this->cnp[0], [5, 6])
+        return in_array((int) $this->cnp[0], [5, 6])
             ? $year + 2000
-            : $this->compute2K($year);
+            : $this->y2K($year);
     }
 
-    private function compute2K($year)
+    private function y2k($year)
     {
         $year += 2000;
 
-        return $year > ((Carbon::now()->year) - 14) ? $year -= 100 : $year;
+        return $year > ((int) date('Y') - 14) ? $year - 100 : $year;
+    }
+
+    private function hash()
+    {
+        $hash = array_reduce(
+            array_keys(self::HashTable),
+            fn ($hash, $key) => $hash += (int) $this->cnp[$key] * self::HashTable[$key]
+        ) % 11;
+
+        return $hash === 10 ? 1 : $hash;
     }
 }
