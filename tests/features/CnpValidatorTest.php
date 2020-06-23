@@ -8,10 +8,8 @@ class CnpValidatorTest extends TestCase
     /** @test */
     public function passes_on_good_cnp()
     {
-        $cnp = '1800119081824';
-
         $validator = Validator::make(
-            ['cnp' => $cnp],
+            ['cnp' => '1800119081824'],
             ['cnp' => 'cnp']
         );
 
@@ -21,10 +19,8 @@ class CnpValidatorTest extends TestCase
     /** @test */
     public function fails_on_bad_cnp()
     {
-        $cnp = '1800191081823';
-
         $validator = Validator::make(
-            ['cnp' => $cnp],
+            ['cnp' => '1800191081823'],
             ['cnp' => 'cnp']
         );
 

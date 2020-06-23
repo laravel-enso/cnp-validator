@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\CnpValidator\App\Validators;
+namespace LaravelEnso\CnpValidator\Validators;
 
 class CnpValidator
 {
