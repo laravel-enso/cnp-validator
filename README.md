@@ -1,7 +1,7 @@
 <!--h-->
 # CNP Validator
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1bd345b5a40144d48647bb79b0b8f91d)](https://www.codacy.com/app/laravel-enso/cnp-validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/cnp-validator&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/91f5f8d26633432db35d9ceb70581513)](https://www.codacy.com/gh/laravel-enso/cnp-validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/cnp-validator&amp;utm_campaign=Badge_Grade) 
 [![StyleCI](https://styleci.io/repos/85675542/shield?branch=master)](https://styleci.io/repos/85675542)
 [![License](https://poser.pugx.org/laravel-enso/actionlogger/license)](https://packagist.org/packages/laravel-enso/actionlogger)
 [![Total Downloads](https://poser.pugx.org/laravel-enso/cnp-validator/downloads)](https://packagist.org/packages/laravel-enso/cnp-validator)
