@@ -1,3 +1,5 @@
+risky: true
+
 preset: laravel
 version: 8
 
