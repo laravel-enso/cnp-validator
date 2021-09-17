@@ -23,7 +23,7 @@ class CnpValidator
 
     private function validLength()
     {
-        return strlen($this->cnp) === 13;
+        return mb_strlen($this->cnp) === 13;
     }
 
     private function validDate()
