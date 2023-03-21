@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Validator;
+use LaravelEnso\CnpValidator\Validators\Cnp;
 use Tests\TestCase;
 
 class CnpValidatorTest extends TestCase
@@ -10,7 +11,7 @@ class CnpValidatorTest extends TestCase
     {
         $validator = Validator::make(
             ['cnp' => '1800119081824'],
-            ['cnp' => 'cnp']
+            ['cnp' => new Cnp()]
         );
 
         $this->assertFalse($validator->fails());
@@ -21,7 +22,7 @@ class CnpValidatorTest extends TestCase
     {
         $validator = Validator::make(
             ['cnp' => '1800191081823'],
-            ['cnp' => 'cnp']
+            ['cnp' => new Cnp()]
         );
 
         $this->assertTrue($validator->fails());

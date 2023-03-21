@@ -27,13 +27,5 @@
         "psr-4": {
             "LaravelEnso\\CnpValidator\\": "src/"
         }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "LaravelEnso\\CnpValidator\\AppServiceProvider"
-            ],
-            "aliases": {}
-        }
     }
 }
