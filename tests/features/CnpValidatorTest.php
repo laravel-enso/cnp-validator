@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Validator;
 use LaravelEnso\CnpValidator\Validators\Cnp;
 use Tests\TestCase;
+use PHPUnit\Framework\Attributes\Test;
 
 class CnpValidatorTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function passes_on_good_cnp()
     {
         $validator = Validator::make(
@@ -17,7 +18,7 @@ class CnpValidatorTest extends TestCase
         $this->assertFalse($validator->fails());
     }
 
-    /** @test */
+    #[Test]
     public function fails_on_bad_cnp()
     {
         $validator = Validator::make(
