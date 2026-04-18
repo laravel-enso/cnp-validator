@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Validator;
 use LaravelEnso\CnpValidator\Validators\Cnp;
 
 $validator = Validator::make(
-    ['cnp' => '1800119081824'],
+    ['cnp' => '1800219081826'],
     ['cnp' => ['nullable', new Cnp()]],
 );
 ```
