@@ -1,49 +1,114 @@
-<!--h-->
 # CNP Validator
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/91f5f8d26633432db35d9ceb70581513)](https://www.codacy.com/gh/laravel-enso/cnp-validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/cnp-validator&amp;utm_campaign=Badge_Grade) 
-[![StyleCI](https://styleci.io/repos/85675542/shield?branch=master)](https://styleci.io/repos/85675542)
-[![License](https://poser.pugx.org/laravel-enso/actionlogger/license)](https://packagist.org/packages/laravel-enso/actionlogger)
-[![Total Downloads](https://poser.pugx.org/laravel-enso/cnp-validator/downloads)](https://packagist.org/packages/laravel-enso/cnp-validator)
-[![Latest Stable Version](https://poser.pugx.org/laravel-enso/cnp-validator/version)](https://packagist.org/packages/laravel-enso/cnp-validator)
-<!--/h-->
+[![License](https://poser.pugx.org/laravel-enso/cnp-validator/license)](LICENSE)
+[![Stable](https://poser.pugx.org/laravel-enso/cnp-validator/version)](https://packagist.org/packages/laravel-enso/cnp-validator)
+[![Downloads](https://poser.pugx.org/laravel-enso/cnp-validator/downloads)](https://packagist.org/packages/laravel-enso/cnp-validator)
+[![PHP](https://img.shields.io/badge/php-8.1%2B-777bb4.svg)](composer.json)
+[![Issues](https://img.shields.io/github/issues/laravel-enso/cnp-validator.svg)](https://github.com/laravel-enso/cnp-validator/issues)
 
-Romanian CNP validator for Laravel
+## Description
 
-### Instalation Steps
+CNP Validator provides a dedicated Laravel validation rule for Romanian personal numeric codes.
 
-1. Add `'LaravelEnso\CnpValidator\CnpValidatorServiceProvider::class'` to your providers list in config/app.php.
+The package exposes a lightweight invokable validation rule that checks whether a value is numeric, has the expected 13-digit length, contains a valid encoded birth date, and matches the official CNP checksum.
 
-2. Use the CNP validator in your ValidateModelRequest validation class
+It works independently of the Enso ecosystem and can be used in any Laravel application that relies on Laravel's validator.
 
-    ```
-    public function rules()
-    {
-        return [
-            'cnp' => [
-                    'max:13',
-                    'cnp',
-                    'nullable',
-                    request()->getMethod() == 'PATCH'
-                        ? Rule::unique('users', 'nin')->ignore(route('user')->id)
-                        : Rule::unique('users', 'nin')
-                ],
-        ];
-    }
-    ```
+## Installation
 
-### Notes
+Install the package:
 
-Don't forget to add the translation for the validator error message in `resources/lang/**/validation.php` under the `cnp` key.
+```bash
+composer require laravel-enso/cnp-validator
+```
 
-The [Laravel Enso Core](https://github.com/laravel-enso/Core) package comes with this package included.
+No additional service provider registration is required.
 
-<!--h-->
-### Contributions
+## Features
+
+- Provides an invokable Laravel validation rule through `LaravelEnso\CnpValidator\Validators\Cnp`.
+- Validates that the CNP contains only numeric digits.
+- Validates the required 13-character length.
+- Validates the encoded date portion of the CNP.
+- Validates the checksum using the official control hash table.
+- Exposes a reusable low-level validator helper through `LaravelEnso\CnpValidator\Validators\Validator`.
+
+## Usage
+
+Use the rule in a form request or validator instance:
+
+```php
+use Illuminate\Support\Facades\Validator;
+use LaravelEnso\CnpValidator\Validators\Cnp;
+
+$validator = Validator::make(
+    ['cnp' => '1800119081824'],
+    ['cnp' => ['nullable', new Cnp()]],
+);
+```
+
+Example in a form request:
+
+```php
+use Illuminate\Validation\Rule;
+use LaravelEnso\CnpValidator\Validators\Cnp;
+
+public function rules(): array
+{
+    return [
+        'cnp' => [
+            'nullable',
+            'max:13',
+            new Cnp(),
+            Rule::unique('users', 'nin'),
+        ],
+    ];
+}
+```
+
+::: warning Note
+The package reports failed validation with the `Invalid` message.
+
+If you want a localized or more specific validation message, map that message in your validation language files or customize it in the consuming validator layer.
+:::
+
+## API
+
+### Validation Rule
+
+`LaravelEnso\CnpValidator\Validators\Cnp`
+
+Public entry point:
+
+- `__invoke($attribute, $value, $fail)`
+
+The rule calls the internal validator and fails the field when the provided CNP is invalid.
+
+### Validator Helper
+
+`LaravelEnso\CnpValidator\Validators\Validator`
+
+Public methods:
+
+- `__construct(?string $cnp = null)`
+- `fails(string $cnp): bool`
+- `passes(): bool`
+
+Validation flow:
+
+- numeric-only check
+- 13-digit length check
+- encoded date validation
+- checksum validation
+
+## Depends On
+
+Framework dependency:
+
+- [`laravel/framework`](https://github.com/laravel/framework) [↗](https://github.com/laravel/framework)
+
+## Contributions
 
 are welcome. Pull requests are great, but issues are good too.
 
-### License
-
-This package is released under the MIT license.
-<!--/h-->
+Thank you to all the people who already contributed to Enso!
