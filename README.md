@@ -5,6 +5,7 @@
 [![Downloads](https://poser.pugx.org/laravel-enso/cnp-validator/downloads)](https://packagist.org/packages/laravel-enso/cnp-validator)
 [![PHP](https://img.shields.io/badge/php-8.1%2B-777bb4.svg)](composer.json)
 [![Issues](https://img.shields.io/github/issues/laravel-enso/cnp-validator.svg)](https://github.com/laravel-enso/cnp-validator/issues)
+[![Merge Requests](https://img.shields.io/github/issues-pr/laravel-enso/cnp-validator.svg)](https://github.com/laravel-enso/cnp-validator/pulls)
 
 ## Description
 
