@@ -35,15 +35,15 @@ class ValidatorTest extends TestCase
     }
 
     #[Test]
-    public function static_fails_matches_instance_passes()
+    public function fails_is_the_inverse_of_passes()
     {
         $valid = '1800119010012';
         $invalid = '1800119010013';
 
-        $this->assertFalse(Validator::fails($valid));
+        $this->assertFalse((new Validator($valid))->fails());
         $this->assertTrue((new Validator($valid))->passes());
 
-        $this->assertTrue(Validator::fails($invalid));
+        $this->assertTrue((new Validator($invalid))->fails());
         $this->assertFalse((new Validator($invalid))->passes());
     }
 }

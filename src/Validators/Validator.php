@@ -10,9 +10,9 @@ class Validator
     {
     }
 
-    public static function fails(string $cnp): bool
+    public function fails(): bool
     {
-        return !(new self($cnp))->passes();
+        return ! $this->passes();
     }
 
     public function passes(): bool

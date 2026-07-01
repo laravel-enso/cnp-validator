@@ -9,7 +9,7 @@ class Cnp implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (Validator::fails($value)) {
+        if ((new Validator($value))->fails()) {
             $fail(__('Invalid'));
         }
     }
