@@ -27,7 +27,7 @@ No additional service provider registration is required.
 
 ## Features
 
-- Provides an invokable Laravel validation rule through `LaravelEnso\CnpValidator\Validators\Cnp`.
+- Provides a Laravel validation rule through `LaravelEnso\CnpValidator\Validators\Cnp`.
 - Validates that the CNP contains only numeric digits.
 - Validates the required 13-character length.
 - Validates the encoded date portion of the CNP.
@@ -81,7 +81,7 @@ If you want a localized or more specific validation message, map that message in
 
 Public entry point:
 
-- `__invoke($attribute, $value, $fail)`
+- `validate(string $attribute, mixed $value, Closure $fail): void`
 
 The rule calls the internal validator and fails the field when the provided CNP is invalid.
 

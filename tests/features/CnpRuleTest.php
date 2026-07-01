@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Validator;
 use LaravelEnso\CnpValidator\Validators\Cnp;
 use PHPUnit\Framework\Attributes\Test;
@@ -7,6 +8,12 @@ use Tests\TestCase;
 
 class CnpRuleTest extends TestCase
 {
+    #[Test]
+    public function uses_the_current_laravel_validation_rule_contract()
+    {
+        $this->assertInstanceOf(ValidationRule::class, new Cnp());
+    }
+
     #[Test]
     public function passes_for_valid_cnp()
     {

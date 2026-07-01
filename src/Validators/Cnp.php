@@ -2,11 +2,12 @@
 
 namespace LaravelEnso\CnpValidator\Validators;
 
-use Illuminate\Contracts\Validation\InvokableRule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class Cnp implements InvokableRule
+class Cnp implements ValidationRule
 {
-    public function __invoke($attribute, $value, $fail)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (Validator::fails($value)) {
             $fail(__('Invalid'));
