@@ -11,7 +11,7 @@
 
 CNP Validator provides a dedicated Laravel validation rule for Romanian personal numeric codes.
 
-The package exposes a lightweight invokable validation rule that checks whether a value is numeric, has the expected 13-digit length, contains a valid encoded birth date, and matches the official CNP checksum.
+The package exposes a lightweight validation rule that checks whether a value is numeric, has the expected 13-digit length, contains a valid encoded birth date, and matches the official CNP checksum.
 
 It works independently of the Enso ecosystem and can be used in any Laravel application that relies on Laravel's validator.
 
@@ -27,6 +27,7 @@ No additional service provider registration is required.
 
 ## Features
 
+- Registers a `cnp` validator rule through Laravel package auto-discovery.
 - Provides a Laravel validation rule through `LaravelEnso\CnpValidator\Validators\Cnp`.
 - Validates that the CNP contains only numeric digits.
 - Validates the required 13-character length.
@@ -37,6 +38,17 @@ No additional service provider registration is required.
 ## Usage
 
 Use the rule in a form request or validator instance:
+
+```php
+use Illuminate\Support\Facades\Validator;
+
+$validator = Validator::make(
+    ['cnp' => '1800219081826'],
+    ['cnp' => ['nullable', 'cnp']],
+);
+```
+
+Or use the rule object directly:
 
 ```php
 use Illuminate\Support\Facades\Validator;
@@ -68,7 +80,7 @@ public function rules(): array
 ```
 
 ::: warning Note
-The package reports failed validation with the `Invalid` message.
+The rule object reports failed validation with the `Invalid` message. The string rule reports failed validation with `The :attribute must be a valid CNP.`.
 
 If you want a localized or more specific validation message, map that message in your validation language files or customize it in the consuming validator layer.
 :::
@@ -76,6 +88,12 @@ If you want a localized or more specific validation message, map that message in
 ## API
 
 ### Validation Rule
+
+String rule:
+
+- `cnp`
+
+The string rule is registered automatically by the package service provider and reports failed validation with `The :attribute must be a valid CNP.`.
 
 `LaravelEnso\CnpValidator\Validators\Cnp`
 
@@ -92,7 +110,7 @@ The rule calls the internal validator and fails the field when the provided CNP 
 Public methods:
 
 - `__construct(?string $cnp = null)`
-- `fails(string $cnp): bool`
+- `fails(): bool`
 - `passes(): bool`
 
 Validation flow:
