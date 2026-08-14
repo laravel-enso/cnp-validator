@@ -78,6 +78,6 @@ class CnpRuleTest extends TestCase
         );
 
         $this->assertTrue($validator->fails());
-        $this->assertSame(['Invalid'], $validator->errors()->get('cnp'));
+        $this->assertSame(['Invalid CNP'], $validator->errors()->get('cnp'));
     }
 }
